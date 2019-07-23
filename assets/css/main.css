@@ -717,7 +717,8 @@ a.back-to-top:focus {
 ========================================================================== */
 .hero-area-bg {
   background: url(../img/hero-area.gif) no-repeat;
-  background: no-repeat center center cover;
+  background-size: cover;
+  background-position: center;
 }
 
 #hero-area {
