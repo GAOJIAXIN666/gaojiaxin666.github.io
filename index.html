@@ -27,10 +27,27 @@
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <style>
+    #mapContainer{
+      height: 600px;
+      width: 100%;
+    }
+    </style>
   </head>
   <body>
-
+    <script>if ("geolocation" in navigator) {
+      console.log("geo ok");
+      navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          document.getElementById('latitude').textContent = lat;
+          document.getElementById('longitude').textContent = lon;
+      });
+    } else {
+      console.log("geo not ok")
+    }</script>
+    
     <!-- Header Area wrapper Starts -->
     <header id="header-wrap">
       <!-- Navbar Start -->
@@ -151,6 +168,24 @@
 
     <!-- About Section Start -->
     <section id="about" class="section-padding">
+      <h2 class="section-title wow flipInX" data-wow-delay="0.4s">我知道你在哪</h2>
+      <h2 class="section-title wow flipInX" data-wow-delay="0.4s">
+        纬度: <span id="latitude"></span>&deg;<br/>
+        经度: <span id="longitude"></span>&deg;
+      </h2>
+      <div id="mapContainer"></div>
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+        <script>
+          navigator.geolocation.getCurrentPosition(position => {
+        // init the map
+        var map = L.map('mapContainer').setView([position.coords.latitude, position.coords.longitude], 13);;
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map); L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindPopup('我来找你').openPopup();})
+
+        
+    </script>
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
