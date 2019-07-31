@@ -34,9 +34,14 @@
       width: 100%;
     }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js" integrity="sha256-WVsM3xrcqyuFNF3W1qtIKbHFsD0977nDQA8DCMp1zCw=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js" integrity="sha256-2/3R3NV5zryj0fDjD3cDh+SNiWQ/TJiMVZzAo5FrhiU=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <script>if ("geolocation" in navigator) {
+
+    <script>
+    function setup () {
+    if ("geolocation" in navigator) {
       console.log("geo ok");
       navigator.geolocation.getCurrentPosition(position => {
           const lat = position.coords.latitude;
@@ -46,7 +51,11 @@
       });
     } else {
       console.log("geo not ok")
-    }</script>
+    }
+    //noCanvas();
+        const video = createCapture(VIDEO);
+        video.size(auto,auto); }
+    </script>
     
     <!-- Header Area wrapper Starts -->
     <header id="header-wrap">
@@ -178,14 +187,14 @@
         <script>
           navigator.geolocation.getCurrentPosition(position => {
         // init the map
-        var map = L.map('mapContainer').setView([position.coords.latitude, position.coords.longitude], 13);;
+        var map = L.map('mapContainer').setView([position.coords.latitude, position.coords.longitude], 25);;
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map); L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindPopup('我来找你').openPopup();})
-
         
-    </script>
+        </script>
+        
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -635,7 +644,8 @@
       </div>
     </footer>
     <!-- Footer Section End -->
-
+  </br>
+    <h2 class="section-title wow flipInX" data-wow-delay="0.4s">我一直在看着你</h2>
     <!-- Go to Top Link -->
     <a href="#" class="back-to-top">
       <i class="icon-arrow-up"></i>
