@@ -27,6 +27,9 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
   ground = new Ground(width / 2, height - 10, width, 20);
+  roof = new Ground(width / 2, height - 400, width, 20);
+  left = new Ground(0, height, 20, height*2);
+  right = new Ground(width, height, 20, height*2);
   for (let i = 0; i < 3; i++) {
     boxes[i] = new Box(450, 300 - i * 75, 84, 100);
   }
@@ -64,6 +67,9 @@ function draw() {
   background(bkgImg);
   Matter.Engine.update(engine);
   ground.show();
+  roof.show();
+  left.show();
+  right.show();
   for (let box of boxes) {
     box.show();
   }
