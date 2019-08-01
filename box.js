@@ -12,7 +12,7 @@ class Box {
     }    
     this.body = Matter.Bodies.rectangle(x, y, w, h, options);
     Matter.World.add(world, this.body);
-    this.w = w;
+    this.w = w*1.5;
     this.h = h;
   }
   
